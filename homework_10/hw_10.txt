@@ -1,4 +1,2 @@
 # link on github repo
 https://github.com/Ihor-Afanasenko/python-automation
-
-Some test change for test new local repo
