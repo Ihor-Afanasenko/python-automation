@@ -16,4 +16,4 @@ def squared_even_numbers(length: int):
         print(counter)
 
 
-squared_even_numbers(1000)
+squared_even_numbers(1000000000)
