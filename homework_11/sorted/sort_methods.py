@@ -1,7 +1,8 @@
 from random import randint
+from typing import List
 
 
-def quicksort(sequence: list) -> list:
+def quicksort(sequence: List[int, float, str]) -> List[int, float, str]:
     """
     This function implements Quicksort list and return sorted list.
     """
@@ -23,7 +24,7 @@ def quicksort(sequence: list) -> list:
     return quicksort(low) + same + quicksort(high)
 
 
-def bubble_sort(sequence: list) -> list:
+def bubble_sort(sequence: List[int, float, str]) -> List[int, float, str]:
     """
     This function implements Bubble sort list and return sorted list.
     """
@@ -40,6 +41,7 @@ def bubble_sort(sequence: list) -> list:
             break
     return sequence
 
+
 MINIMUM = 32
 
 
@@ -55,7 +57,7 @@ def find_minrun(n: int) -> int:
     return n + r
 
 
-def insertion_sort(sequence: list, left: int, right: int) -> list:
+def insertion_sort(sequence: List[int, float, str], left: int, right: int) -> List[int, float, str]:
     """
     This function implements insertion sort of the sequence.
     """
@@ -70,7 +72,7 @@ def insertion_sort(sequence: list, left: int, right: int) -> list:
     return sequence
 
 
-def merge(sequence: list, l: int, m: int, r: int):
+def merge(sequence: List[int, float, str], l: int, m: int, r: int):
     """
     This function implements merge parts of sequence.
     """
@@ -110,7 +112,7 @@ def merge(sequence: list, l: int, m: int, r: int):
         j += 1
 
 
-def tim_sort(sequence: list) -> list:
+def tim_sort(sequence: List[int, float, str]) -> List[int, float, str]:
     """
     This function implements Timsort - a hybrid sort algorithm, its a standard sort algorithm in Python
     """

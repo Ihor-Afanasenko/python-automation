@@ -1,7 +1,9 @@
-from typing import Callable, Union
+from typing import Callable, Union, Tuple, List, Set
 
 
-def new_filter(function: Callable, iterable: Union[tuple, list, set]) -> list:
+def new_filter(function: Callable,
+               iterable: Union[List[int, float, str], Tuple[int, float, str], Set[int, float, str]]) -> List[
+    int, float, str]:
     """
     Return a list yielding those items of iterable for which function(item)
     is true. If function is None, return empty list.

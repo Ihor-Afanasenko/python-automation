@@ -1,7 +1,9 @@
-from typing import Callable, Union
+from typing import Callable, Union, Tuple, List, Set
 
 
-def new_filter_2(function: Callable, iterable: Union[tuple, list, set], argument: int) -> list:
+def new_filter_2(function: Callable,
+                 iterable: Union[Tuple[int, float, str], List[int, float, str], Set[int, float, str]], argument: int) -> \
+        List[int, float, str]:
     """
     Return a list those items of iterable for which function(item)
     is true.
@@ -12,7 +14,7 @@ def new_filter_2(function: Callable, iterable: Union[tuple, list, set], argument
     return function(iterable, argument)
 
 
-def filter_more(iterable: list, argument: Union[int, float]) -> list:
+def filter_more(iterable: List[int, float], argument: Union[int, float]) -> List[int, float]:
     result = []
     for element in iterable:
         if element > argument:
@@ -20,7 +22,7 @@ def filter_more(iterable: list, argument: Union[int, float]) -> list:
     return result
 
 
-def filter_less(iterable: list, argument: Union[int, float]) -> list:
+def filter_less(iterable: List[int, float], argument: Union[int, float]) -> List[int, float]:
     result = []
     for element in iterable:
         if element < argument:
@@ -28,7 +30,7 @@ def filter_less(iterable: list, argument: Union[int, float]) -> list:
     return result
 
 
-def filter_equal(iterable: list, argument: Union[int, float, str]) -> list:
+def filter_equal(iterable: List[int, float, str], argument: Union[int, float, str]) -> List[int, float, str]:
     result = []
     for element in iterable:
         if element == argument:
@@ -36,7 +38,7 @@ def filter_equal(iterable: list, argument: Union[int, float, str]) -> list:
     return result
 
 
-def filter_more_and_equal(iterable: list, argument: Union[int, float]) -> list:
+def filter_more_and_equal(iterable: List[int, float], argument: Union[int, float]) -> List[int, float]:
     result = []
     for element in iterable:
         if element >= argument:
@@ -44,7 +46,7 @@ def filter_more_and_equal(iterable: list, argument: Union[int, float]) -> list:
     return result
 
 
-def filter_less_and_equal(iterable: Union[tuple, list, set], argument: Union[int, float]) -> list:
+def filter_less_and_equal(iterable: List[int, float], argument: Union[int, float]) -> List[int, float]:
     result = []
     for element in iterable:
         if element <= argument:
@@ -52,7 +54,7 @@ def filter_less_and_equal(iterable: Union[tuple, list, set], argument: Union[int
     return result
 
 
-def filter_not_equal(iterable: Union[tuple, list, set], argument: Union[int, float, str]) -> list:
+def filter_not_equal(iterable: List[int, float, str], argument: Union[int, float, str]) -> List[int, float]:
     result = []
     for element in iterable:
         if element != argument:
