@@ -14,7 +14,7 @@ def name_function(function):
 
 
 @name_function
-def add_function(x: Union[int, float, str], y: Union[int, float, str]):
+def add_function(x: Union[int, float], y: Union[int, float]):
     """
     This function returns the sum of two elements.
     """
@@ -23,7 +23,7 @@ def add_function(x: Union[int, float, str], y: Union[int, float, str]):
 
 
 @name_function
-def multi_function(x: Union[int, float, str], y: Union[int, float]):
+def multi_function(x: Union[int, float], y: Union[int, float]):
     """
     This function returns the multiplication of two elements.
     """
