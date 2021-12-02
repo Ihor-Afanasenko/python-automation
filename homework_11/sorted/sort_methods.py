@@ -1,8 +1,8 @@
 from random import randint
-from typing import List
+from typing import List, Union
 
 
-def quicksort(sequence: List[int, float, str]) -> List[int, float, str]:
+def quicksort(sequence: List[Union[int, float, str]]) -> List[Union[int, float, str]]:
     """
     This function implements Quicksort list and return sorted list.
     """
@@ -24,7 +24,7 @@ def quicksort(sequence: List[int, float, str]) -> List[int, float, str]:
     return quicksort(low) + same + quicksort(high)
 
 
-def bubble_sort(sequence: List[int, float, str]) -> List[int, float, str]:
+def bubble_sort(sequence: List[Union[int, float, str]]) -> List[Union[int, float, str]]:
     """
     This function implements Bubble sort list and return sorted list.
     """
@@ -39,6 +39,73 @@ def bubble_sort(sequence: List[int, float, str]) -> List[int, float, str]:
                 already_sorted = False
         if already_sorted:
             break
+    return sequence
+
+
+def shell_sort(sequence: List[Union[int, float, str]]) -> List[Union[int, float, str]]:
+    """
+    This function implements shell sort of the sequence.
+    """
+
+    gap = len(sequence) // 2
+    while gap > 0:
+        for i in range(gap, len(sequence)):
+            temp = sequence[i]
+            j = i
+            while j >= gap and sequence[j - gap] > temp:
+                sequence[j] = sequence[j - gap]
+                j -= gap
+            sequence[j] = temp
+        gap = gap // 2
+    return sequence
+
+
+def heapify(sequence: List[Union[int, float, str]], n: int, i: int) -> List[Union[int, float, str]]:
+    """
+    This function find subtree rooted with node i which is an index in sequence. n is size of heap.
+    """
+
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+    if l < n and sequence[largest] < sequence[l]:
+        largest = l
+    if r < n and sequence[largest] < sequence[r]:
+        largest = r
+    if largest != i:
+        sequence[i], sequence[largest] = sequence[largest], sequence[i]
+        heapify(sequence, n, largest)
+    return sequence
+
+
+def heap_sort(sequence: List[Union[int, float, str]]) -> List[Union[int, float, str]]:
+    """
+    This function implements heap sort of the sequence.
+    """
+
+    n = len(sequence)
+
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(sequence, n, i)
+
+    for i in range(n - 1, 0, -1):
+        sequence[i], sequence[0] = sequence[0], sequence[i]
+        heapify(sequence, i, 0)
+    return sequence
+
+
+def insertion_sort(sequence: List[Union[int, float, str]]) -> List[Union[int, float, str]]:
+    """
+    This function implements insertion sort of the sequence.
+    """
+
+    for i in range(1, len(sequence)):
+        j = i - 1
+        next_element = sequence[i]
+        while (sequence[j] > next_element) and (j >= 0):
+            sequence[j + 1] = sequence[j]
+            j -= 1
+        sequence[j + 1] = next_element
     return sequence
 
 
@@ -57,9 +124,10 @@ def find_minrun(n: int) -> int:
     return n + r
 
 
-def insertion_sort(sequence: List[int, float, str], left: int, right: int) -> List[int, float, str]:
+def insertion_sort_for_tim_sort(sequence: List[Union[int, float, str]], left: int, right: int) -> List[
+    Union[int, float, str]]:
     """
-    This function implements insertion sort of the sequence.
+    This function implements insertion sort for tim sort of the sequence.
     """
 
     for i in range(left + 1, right + 1):
@@ -72,7 +140,7 @@ def insertion_sort(sequence: List[int, float, str], left: int, right: int) -> Li
     return sequence
 
 
-def merge(sequence: List[int, float, str], l: int, m: int, r: int):
+def merge(sequence: List[Union[int, float, str]], l: int, m: int, r: int):
     """
     This function implements merge parts of sequence.
     """
@@ -112,7 +180,7 @@ def merge(sequence: List[int, float, str], l: int, m: int, r: int):
         j += 1
 
 
-def tim_sort(sequence: List[int, float, str]) -> List[int, float, str]:
+def tim_sort(sequence: List[Union[int, float, str]]) -> List[Union[int, float, str]]:
     """
     This function implements Timsort - a hybrid sort algorithm, its a standard sort algorithm in Python
     """
@@ -122,7 +190,7 @@ def tim_sort(sequence: List[int, float, str]) -> List[int, float, str]:
 
     for start in range(0, n, minrun):
         end = min(start + minrun - 1, n - 1)
-        insertion_sort(sequence, start, end)
+        insertion_sort_for_tim_sort(sequence, start, end)
 
     size = minrun
     while size < n:
