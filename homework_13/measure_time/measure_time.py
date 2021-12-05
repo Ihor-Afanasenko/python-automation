@@ -16,9 +16,9 @@ def measure_time(function):
 
     def decorator(*args, **kwargs):
         start_time = time.time()
-        function(*args, **kwargs)
+        result = function(*args, **kwargs)
         print(f'Execution time for function {function.__name__}: {time.time() - start_time} seconds')
-        return function(*args, **kwargs)
+        return result
 
     return decorator
 
