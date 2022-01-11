@@ -7,7 +7,7 @@ from modification import Modification
 @Modification("Install gas equipment")
 class Car:
     """
-    The class described an car with parameters:
+    The class described a car with parameters:
     mark, model, manufacture year, power,
     last modification - relates to value Decorate (Modification),
     modifications - list all modifications in Decorates (Modification)
@@ -18,8 +18,8 @@ class Car:
         self.__model = model
         self.__manufacture_year = manufacture_year
         self.__power = power
-        self.__last_modification = self.last_modification
-        self.__modifications = self.modifications
+        self.__last_modification = self.last_modification if hasattr(Car, f'_{Car.__name__}__last_modification') else None
+        self.__modifications = self.modifications if hasattr(Car, f'_{Car.__name__}__modifications') else None
 
     @property
     def last_modification(self) -> str:
