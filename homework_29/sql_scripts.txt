@@ -1,0 +1,37 @@
+SQL scripts
+
+# Install DB postgress
+sudo apt install postgresql postgresql-contrib
+sudo apt install postgresql postgresql-contrib
+
+# Activate and change password
+sudo -i -u postgres psql
+alter user postgres password '*******';
+
+# Create DB
+create database store;
+
+# Connect to store DB
+\c store
+
+# Create tables
+create table products(id varchar(8) primary key, name varchar(32), price int);
+create table orders(id varchar(8) primary key, not null, products_id varchar(8) not null, quantity int, foreigh key (products_id) references products (id));
+
+# Add products and orders
+insert into products (id, name, price) values ('P1000', 'monitor',234),('P2000','laptop',890), ('P3000','netbook', 570),('P4000','macmini, 1450);
+insert into orders (id, products_id, quantity) values ('A1000', 'P1000',10),('A6000', 'P1000',34),('A2000', 'P4000',20), ('A3000', 'P4000',5), ('A4000','P3000',3),('A5000','P2000',23);
+
+# Select result with name, price, quantity, total=price*quantity
+select name, price, quantity, price*quantity as total from orders inner join products on orders.products_id = products.id;
+
+Result
+  name   | price | quantity | total
+---------+-------+----------+-------
+ monitor |   234 |       10 |  2340
+ monitor |   234 |       34 |  7956
+ macmini |  1450 |       20 | 29000
+ macmini |  1450 |        5 |  7250
+ netbook |   570 |        3 |  1710
+ laptop  |   890 |       23 | 20470
+(6 rows)
