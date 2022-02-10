@@ -8,4 +8,4 @@ class Config(Singleton):
         self.port = "5432"
         self.database = "orders"
         self.user = "postgres"
-        self.password = "Great123"
+        self.password = "*****"
