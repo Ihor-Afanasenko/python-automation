@@ -1,4 +1,4 @@
-from ..core import Config, Singleton
+from ...core import Singleton, Config
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 

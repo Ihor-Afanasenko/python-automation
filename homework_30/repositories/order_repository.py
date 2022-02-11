@@ -1,4 +1,4 @@
-from .base_repository import BaseRepository
+from ..core import BaseRepository
 from ..models import Order
 from typing import List
 
