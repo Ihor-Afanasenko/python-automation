@@ -1,0 +1,5 @@
+create database orders;
+\c orders
+create table orders(id varchar(8) primary key not null unique, products_id varchar(8) not null, quantity int, delivery_order varchar(16), status_order varchar(16), payment_status varchar(16));
+insert into orders (id, products_id, quantity, delivery_order, status_order, payment_status) values ('A1000', 'P1000',10, 'collecting','confirmed','paid'),('A6000', 'P1000',34,'returning','canceled','failed'),('A2000', 'P4000',20, 'returned','completed','unpaid'), ('A3000', 'P4000',5,'arrived','confirmed','paid'), ('A4000','P3000',3,'shipped','canceled','expired'),('A5000','P2000',23,'collected','open','unpaid');
+
