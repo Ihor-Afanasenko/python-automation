@@ -1,0 +1,55 @@
+# Base script work with Docker (postgress db, pgweb) and result example
+
+# Install docker for current OS
+# Check version
+docker --version
+Docker version 20.10.12, build e91ed57
+
+# Pull and install postgres image
+docker pull postgres
+
+# Pull and install pgweb
+docker pull sosedoff/pgweb
+
+# Check available images
+sudo docker image ls
+
+# Result
+REPOSITORY       TAG       IMAGE ID       CREATED       SIZE
+postgres         latest    6a3c44872108   4 days ago    374MB
+sosedoff/pgweb   latest    69a84597d174   4 weeks ago   192MB
+
+# Run postgres contenier
+sudo docker run --name postgres_db -e POSTGRES_PASSWORD=password -d -p 1111:5432 postgres
+
+# Check runing container
+sudo docker ps -a
+
+# Result
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS         PORTS                                       NAMES
+40194faea542   postgres         "docker-entrypoint.s…"   13 seconds ago   Up 8 seconds   0.0.0.0:1111->5432/tcp, :::1111->5432/tcp   postgres_db
+
+# Run contenier pgweb
+sudo docker run --name pg-web -d -p 4444:8081 sosedoff/pgweb
+
+# Check running conteniers state
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS         PORTS                                       NAMES
+40194faea542   postgres         "docker-entrypoint.s…"   15 seconds ago   Up 8 seconds   0.0.0.0:1111->5432/tcp, :::1111->5432/tcp   postgres_db
+e2a8b8cef8fd   sosedoff/pgweb   "/usr/bin/pgweb --bi…"   9 minutes ago    Up 8 minutes   0.0.0.0:4444->8081/tcp, :::4444->8081/tcp   pg-web
+
+# Go to postgres contenier
+sudo docker exec -it postgres_db bash
+
+# Go to db
+psql -U postgres
+
+# Create db
+create database new_db;
+
+# Create table
+create table test(id int primary key unique, name varchar(20) not null);
+
+# Add data in db
+insert into test (id, name) values (1,'test_1'),(2,'test_2');
+
+# Connect pgweb with postgress-db
